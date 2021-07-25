@@ -1,8 +1,10 @@
 let options = ['Rock','Paper','Scissors']
 
 let playerCounter =1;
+
 let computerCounter = 1;
 
+let playCount = 1;
 
 function computerPlay(){
     let random = Math.floor(Math.random() * options.length);
@@ -53,41 +55,40 @@ function playRound(playerSelection, computerSelection){
         computerCounter += 1
         return("You Lose! Paper Beats Rock!")
 
-
-}}
-
-function game(){
-    
-    for (let i = 0; i < 5; i++) {
-        let playerSelection= prompt("Choose Rock, Paper, or Scissors:")
-        console.log(playRound(playerSelection, computerPlay()))
-    
+    }
+    else{
+        return("Tie")
     }
 
-    console.log(`Computer has ${computerCounter} points!
-You have ${playerCounter} points!`)
-        if (computerCounter > playerCounter){
-            console.log("You Lost!")
+}
 
 
-        }
-    
-        else if (playerCounter > computerCounter){
-            console.log("You Won!")
-
-
-        }
-        else {
-
-            console.log("It's a Tie!");
-        }
-        
-        
-    }
-        
 
 let choice = document.querySelectorAll("button")
+
 console.log(choice)
+
 choice.forEach(button => button.addEventListener("click", function(){
-    console.log(button)
-}))
+    console.log(playRound(button.textContent, computerPlay()))
+    if (playerCounter === 5 || computerCounter === 5){
+        
+        console.log(`Computer has ${computerCounter} points! You have ${playerCounter} points!`)
+
+        if (computerCounter > playerCounter){
+            console.log("You Lost!")
+        }
+        else if (playerCounter > computerCounter){
+            console.log("You Won!")
+        }
+        else {
+            console.log("It's a Tie!");
+        }
+
+        computerCounter = 1
+        playerCounter = 1
+
+    }
+
+    }
+))
+
