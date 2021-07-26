@@ -57,11 +57,17 @@ function playRound(playerSelection, computerSelection){
 
     }
     else{
-        return("Tie")
+        return("It's a tie")
     }
 
 }
 
+let div_one = document.createElement('div')
+const container = document.querySelector('#container');
+
+const content = document.createElement('div');
+const end_div = document.createElement('div');
+const result_div = document.createElement('div');
 
 
 let choice = document.querySelectorAll("button")
@@ -69,19 +75,29 @@ let choice = document.querySelectorAll("button")
 console.log(choice)
 
 choice.forEach(button => button.addEventListener("click", function(){
-    console.log(playRound(button.textContent, computerPlay()))
+    
+    container.textContent = playRound(button.textContent, computerPlay())
+    container.appendChild(content);
+
     if (playerCounter === 5 || computerCounter === 5){
-        
-        console.log(`Computer has ${computerCounter} points! You have ${playerCounter} points!`)
+                
+        result_div.textContent = (`Computer has ${computerCounter} points! You have ${playerCounter} points!`)
+        container.appendChild(result_div)
 
         if (computerCounter > playerCounter){
-            console.log("You Lost!")
+            end_div.textContent = ("You Lost!")
+            container.appendChild(end_div);
+
         }
         else if (playerCounter > computerCounter){
-            console.log("You Won!")
+            end_div.textContent = ("You Won!")
+            container.appendChild(end_div);
+
         }
         else {
-            console.log("It's a Tie!");
+            end_div.textContent = ("It's a Tie!");
+            container.appendChild(end_div);
+
         }
 
         computerCounter = 1
